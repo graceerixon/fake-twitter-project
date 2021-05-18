@@ -1,0 +1,37 @@
+<div class="section">
+
+  <h2><%= @user.email %></h2>
+  <h3>Followers: <%= @followerCount %></h3>
+  <h3>Following: <%= @followingCount %></h3>
+  <% if current_user == @user %>
+    <h3>You have tweeted <%= @userCount.size %> time(s).</h3>
+  <% else %>
+
+    <% if current_user.following?(@user) %>
+      <h5><%= button_to "Unfollow", unfollow_user_path(@user), method: "POST", class: "button" %></h5>
+    <% else %>
+      <h5><%= button_to "Follow", follow_user_path(@user), method: "POST", class: "button"  %></h5>
+    <% end %>
+
+    <h3><%= @user.email %> has tweeted <%= @userCount.size %> time(s).</h3>
+  <% end %>
+  <hr />
+
+  <% @tweets.reverse.each do |tweet| %>
+    <% if @user == tweet.user %>
+      <p>
+        <tr>
+          <div class="tweet">
+            <h3><td>From: <%= link_to tweet.user.email, user_profile_path(tweet.user) %></td></h3>
+            <h2><td><%= tweet.body %></td></h2>
+            <h3><td>Posted at <%= tweet.created_at %></td></h3>
+            <% if current_user == @user %>
+              <%= link_to "Delete", tweet_path(tweet.id), :confirm => "Are you sure?", :method => :delete %>
+            <% end %>
+          </div>
+        </tr>
+      </p>
+      <hr />
+    <% end %>
+  <% end %>
+</div>

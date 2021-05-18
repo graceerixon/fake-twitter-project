@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+}
+
+.nav {
+    color: #fff;
+    background-color: #1DA1F2;
+    padding: 15px;
+    margin: -10px;
+    font-size: 14px;
+ }
+
+.title {
+  font-size: 30px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  padding: 14px 16px;
+}
+
+.nav-link:visited, .button:visited {
+  color: white;
+}
+
+.tweet{
+    border: 10px black;
+    margin: 5%;
+}
+
+.button {
+  margin-right: 5%;
+  float: right;
+  padding: 1%;
+  background-color: #1DA1F2;
+  color: white;
+  text-decoration: none;
+}
+
+.section {
+  margin: 5%;
+}
+
+.right {
+  float: right;
+}

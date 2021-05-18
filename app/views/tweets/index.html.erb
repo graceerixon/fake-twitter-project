@@ -1,0 +1,28 @@
+<div class="section">
+  <%= link_to 'New Tweet', new_tweet_path(@user), :class => 'button' %>
+
+  <% @tweets.reverse.each do |tweet| %>
+  <div class="tweet">
+    <tr>
+      <h3><td>From: <%= link_to tweet.user.email, user_profile_path(tweet.user) %></td></h3>
+      <h2><td><%= tweet.body %></td></h2>
+      <h3><td>Posted at <%= tweet.created_at %></td></h3>
+      <% if current_user.liked? tweet %>
+        <%= link_to dislike_tweet_path(tweet.id), method: :put do %>
+          <%= image_tag("like.png", :alt => "Like", height: 18, width: 20) %>
+          <%= tweet.get_likes.size %>
+        <% end %>
+      <% else %>
+        <%= link_to like_tweet_path(tweet), method: :put do %>
+          <%= image_tag("dislike.png", :alt => "Like", height: 18, width: 20) %>
+          <%= tweet.get_likes.size %>
+        <% end %>
+      <% end %>
+      <% if current_user == tweet.user %>
+        <%= link_to "Delete", tweet_path(tweet.id), :confirm => "Are you sure?", :method => :delete, :class => 'right' %>
+      <% end %>
+      <hr />
+    </tr>
+    </div>
+  <% end %>
+</div>
